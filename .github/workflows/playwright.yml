@@ -29,10 +29,12 @@ jobs:
       - name: Run Playwright tests 
       # we are using npx playwright test command to run the playwright tests because it will automatically find and run all the tests in the tests folder and it will also generate a report in the playwright-report folder
         run: npx playwright test --grep "@login"
+      - name: Generate Allure Report
+        run: npx allure generate allure-results --clean -o allure-report
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with: 
-          name: playwright-report
+          name: allure-report
           path: allure-report/
           # we are setting the retention days to 30 because we want to keep the report for 30 days before it gets deleted automatically by github actions
           retention-days: 30
