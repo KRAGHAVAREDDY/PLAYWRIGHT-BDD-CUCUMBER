@@ -8,6 +8,7 @@ import type { AxeResults } from "axe-core";
 let   results: AxeResults;
 
 Given('User is on the login page {string}', async ({ page }, url) => {
+  console.log("Navigating to URL: " + url);
   await page.goto(url);
 });
 
