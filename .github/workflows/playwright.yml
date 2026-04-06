@@ -24,9 +24,11 @@ jobs:
       - name: Install Playwright Browsers
       # we are using npx playwright install --with-deps command to install playwright browsers and its dependencies because it will ensure that all the necessary dependencies are installed for the browsers to work properly and it will also install the browsers in a way that is compatible with the operating system of the runner
         run: npx playwright install --with-deps
+      - name: Generate Playwright BDD tests
+        run: npx bddgen test -c playwright.config.ts --tags "@login"
       - name: Run Playwright tests 
       # we are using npx playwright test command to run the playwright tests because it will automatically find and run all the tests in the tests folder and it will also generate a report in the playwright-report folder
-        run: npx playwright test --grep @login
+        run: npx playwright test --grep "@login"
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with: 
