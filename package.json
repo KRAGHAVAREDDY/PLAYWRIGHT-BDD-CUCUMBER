@@ -1,0 +1,26 @@
+{
+  "name": "playwright-bdd-cucumber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write . --plugin prettier-plugin-gherkin",
+    "raghava:playwright": "npx playwright-bdd test && npx playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.5.2",
+    "allure-commandline": "^2.38.1",
+    "allure-playwright": "^3.6.0",
+    "playwright-bdd": "^8.5.0",
+    "prettier": "^3.8.1"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "prettier-plugin-gherkin": "^3.1.3"
+  }
+}

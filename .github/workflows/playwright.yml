@@ -1,0 +1,36 @@
+#  below one  is the name of the workflow
+name: Playwright Tests 
+on:
+  # when ever there is a push or pull request to main or master branch this workflow will be triggered
+  push:
+    branches: [main, master]
+  # pull_request:
+  #   branches: [main, master]
+  workflow_dispatch: # this will allow us to trigger the workflow manually from github actions tab
+jobs:
+  #  below one is the name of the job test and it will run on ubuntu-latest environment and it will have a timeout of 60 minutes
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+      # we are using npm ci command to install dependencies because it is faster and more reliable than npm install command and it will also check for the integrity of the package-lock.json file
+        run: npm ci
+        
+      - name: Install Playwright Browsers
+      # we are using npx playwright install --with-deps command to install playwright browsers and its dependencies because it will ensure that all the necessary dependencies are installed for the browsers to work properly and it will also install the browsers in a way that is compatible with the operating system of the runner
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests 
+      # we are using npx playwright test command to run the playwright tests because it will automatically find and run all the tests in the tests folder and it will also generate a report in the playwright-report folder
+        run: npx playwright test --grep @login
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with: 
+          name: playwright-report
+          path: playwright-report/
+          # we are setting the retention days to 30 because we want to keep the report for 30 days before it gets deleted automatically by github actions
+          retention-days: 30
