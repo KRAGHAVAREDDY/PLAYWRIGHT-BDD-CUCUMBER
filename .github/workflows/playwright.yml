@@ -33,6 +33,6 @@ jobs:
         if: ${{ !cancelled() }}
         with: 
           name: playwright-report
-          path: playwright-report/
+          path: allure-report/
           # we are setting the retention days to 30 because we want to keep the report for 30 days before it gets deleted automatically by github actions
           retention-days: 30
