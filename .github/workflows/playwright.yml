@@ -6,10 +6,10 @@ on:
     branches: [main, master]
   # pull_request:
   #   branches: [main, master]
-  workflow_dispatch: # this will allow us to trigger the workflow manually from github actions tab
+  # this will allow us to trigger the workflow manually from github actions tab
 jobs:
   #  below one is the name of the job test and it will run on ubuntu-latest environment and it will have a timeout of 60 minutes
-  test:
+  UI-Tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
